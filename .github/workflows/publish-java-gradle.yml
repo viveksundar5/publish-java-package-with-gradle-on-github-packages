@@ -26,8 +26,7 @@ jobs:
           echo "SONAR URL - > " ${{vars.SONAR_HOST_URL}}
           export SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}
           export SONAR_HOST_URL=${{vars.SONAR_HOST_URL}}
-          ./gradlew \
-            -D sonar.projectKey=test-maven-project \
+          ./gradlew -Dsonar.projectKey=test-maven-project \
             -D sonar.host.url=$SONAR_HOST_URL \
             -D sonar.login=admin \ 
             -D sonar.password=admin123 \ 
