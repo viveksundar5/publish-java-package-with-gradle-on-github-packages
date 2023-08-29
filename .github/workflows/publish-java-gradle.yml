@@ -30,7 +30,7 @@ jobs:
             -D sonar.host.url=$SONAR_HOST_URL \
             -D sonar.login=admin \ 
             -D sonar.password=admin123 \ 
-            ./gradlew \
+            ./gradlew.bat \
 
     - name: Publish package
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
