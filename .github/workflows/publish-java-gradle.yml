@@ -26,7 +26,8 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
-     # run: |
+         sonar-project-key:test-maven-project
+        # run: |
           #echo "SONAR URL - > " ${{vars.SONAR_HOST_URL}}
           #export SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}
           #export SONAR_HOST_URL=${{vars.SONAR_HOST_URL}}
