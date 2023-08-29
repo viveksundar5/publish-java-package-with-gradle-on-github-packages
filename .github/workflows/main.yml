@@ -1,0 +1,59 @@
+name: Build, Test, and Publish
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11  # Adjust the Java version as needed
+
+      - name: Build and Test with Gradle
+        run: ./gradlew build test
+
+  sonar:
+    name: SonarQube Analysis
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11  # Adjust the Java version as needed
+
+      - name: Run SonarQube analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+        run: ./gradlew sonarqube
+
+  publish:
+    name: Publish to GitHub Packages
+    needs: sonar
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11  # Adjust the Java version as needed
+
+      - name: Publish to GitHub Packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.JAVA_TOKEN }}
+        run: ./gradlew publish
