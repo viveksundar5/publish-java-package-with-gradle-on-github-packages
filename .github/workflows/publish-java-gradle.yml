@@ -22,14 +22,18 @@ jobs:
         arguments: build
 
     - name: Run SonarQube Scan
-      run: |
-          echo "SONAR URL - > " ${{vars.SONAR_HOST_URL}}
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+     # run: |
+          #echo "SONAR URL - > " ${{vars.SONAR_HOST_URL}}
           #export SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}
-          export SONAR_HOST_URL=${{vars.SONAR_HOST_URL}}
-          ./gradlew -Dsonar.projectKey=test-maven-project \
-            -D sonar.host.url=$SONAR_HOST_URL \
-            -D sonar.login=admin \ 
-            -D sonar.password=admin123 \ 
+          #export SONAR_HOST_URL=${{vars.SONAR_HOST_URL}}
+          #-Dsonar.projectKey=test-maven-project \
+            #-D sonar.host.url=$SONAR_HOST_URL \
+            #-D sonar.login=admin \ 
+           # -D sonar.password=admin123 \ 
         
 
     - name: Publish package
