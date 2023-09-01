@@ -16,9 +16,6 @@
 
   <distributionManagement>
     <repository>
-      <id>github</id>
-      <name>GitHub Packages</name>
-      <url>https://maven.pkg.github.com/viveksundar5/publish-java-package-with-gradle-on-github-packages
     </repository>
   </distributionManagement>         
 
