@@ -18,7 +18,7 @@
     <repository>
       <id>github</id>
       <name>GitHub Packages</name>
-      <url>https://maven.pkg.github.com/lf-common-repo/shared-workflow</url>
+      <url>https://maven.pkg.github.com/viveksundar5/publish-java-package-with-gradle-on-github-packages
     </repository>
   </distributionManagement>         
 
