@@ -20,4 +20,4 @@ Build file '/home/runner/work/SMEDigitalBank/SMEDigitalBank/build.gradle' line: 
 
 * What went wrong:
 A problem occurred evaluating root project 'SMEDigitalBank'.
-> Could not find method plugins() for arguments [build_8qkxyi486cijvbvhzo150fq00$_run_closure1$_closure4@10e2f8ec] on object of type org.gradle.api.internal.initialization.DefaultScriptHandler.
+> Could not find method plugins() for arguments [build_8qkxyi486cijvbvhzo150fq00$_run_closure1$_closure4@3f6bbe51] on object of type org.gradle.api.internal.initialization.DefaultScriptHandler.
