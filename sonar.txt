@@ -1,5 +1,4 @@
-3s
-Run ./gradle-4.10.1/bin/gradle build
+Run ./gradle-4.10.1/bin/gradle sonarqube \
   
 
 Welcome to Gradle 4.10.1!
@@ -17,9 +16,24 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 
 FAILURE: Build failed with an exception.
 
-* Where:
-Build file '/home/runner/work/SMEDigitalBank/SMEDigitalBank/build.gradle' line: 29
-
 * What went wrong:
-A problem occurred evaluating root project 'SMEDigitalBank'.
-> Could not find method sonarqube() for arguments [build_8qkxyi486cijvbvhzo150fq00$_run_closure1$_closure4@21c52efd] on object of type org.gradle.api.internal.initialization.DefaultScriptHandler.
+A problem occurred configuring root project 'SMEDigitalBank'.
+> Could not resolve all artifacts for configuration ':classpath'.
+   > Could not resolve com.rakbank.infosys.lib:gradle-plugin:1111.
+     Required by:
+         project :
+      > Could not resolve com.rakbank.infosys.lib:gradle-plugin:1111.
+         > Could not get resource 'https://maven.pkg.github.com/Rakbank-DEH-Onboarding/RetailOnboarding-AccMS/com/rakbank/infosys/lib/gradle-plugin/1111/gradle-plugin-1111.pom'.
+            > java.lang.NullPointerException (no error message)
+   > Could not resolve com.rakbank.infosys.lib.fbk:gradle-plugin:1111.
+     Required by:
+         project :
+      > Could not resolve com.rakbank.infosys.lib.fbk:gradle-plugin:1111.
+         > Could not get resource 'https://maven.pkg.github.com/Rakbank-DEH-Onboarding/RetailOnboarding-AccMS/com/rakbank/infosys/lib/fbk/gradle-plugin/1111/gradle-plugin-1111.pom'.
+            > java.lang.NullPointerException (no error message)
+   > Could not resolve com.rakbank.infosys.lib.fba:gradle-plugin:1111.
+     Required by:
+         project :
+      > Could not resolve com.rakbank.infosys.lib.fba:gradle-plugin:1111.
+         > Could not get resource 'https://maven.pkg.github.com/Rakbank-DEH-Onboarding/RetailOnboarding-AccMS/com/rakbank/infosys/lib/fba/gradle-plugin/1111/gradle-plugin-1111.pom'.
+            > java.lang.NullPointerException (no error message)
