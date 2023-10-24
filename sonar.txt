@@ -1,34 +1,21 @@
-Run ./gradle-4.10.1/bin/gradle build
-
-Welcome to Gradle 4.10.1!
-
-Here are the highlights of this release:
- - Incremental Java compilation by default
- - Periodic Gradle caches cleanup
- - Gradle Kotlin DSL 1.0-RC6
- - Nested included builds
- - SNAPSHOT plugin versions in the `plugins {}` block
-
-For more details see https://docs.gradle.org/4.10.1/release-notes.html
-
-Starting a Gradle Daemon (subsequent builds will be faster)
+Run ./gradle-4.10.1/bin/gradle sonarqube \
 
 > Configure project :
-org.gradle.api.plugins.HelpTasksPlugin@524a11fd
-org.gradle.language.base.plugins.LifecycleBasePlugin@2a53c61b
-org.gradle.api.plugins.BasePlugin@77d40d57
-org.gradle.api.plugins.ReportingBasePlugin@4aaf568b
-org.gradle.api.plugins.JavaBasePlugin@4ca8d567
-org.gradle.api.plugins.JavaPlugin@787fb1f7
-org.gradle.api.plugins.WarPlugin@2f96b51a
-org.gradle.platform.base.plugins.ComponentBasePlugin@1fbda56d
-org.gradle.language.base.plugins.LanguageBasePlugin@15344810
-org.gradle.platform.base.plugins.BinaryBasePlugin@1041a348
-org.gradle.api.plugins.JavaBasePluginRules@ae5fa3f
-org.gradle.api.publish.plugins.PublishingPlugin@7881b0c3
-org.gradle.api.publish.maven.plugins.MavenPublishPlugin@4fc2030b
-vr.plugin.ManifestClasspathPlugin@5284b258
-org.sonarqube.gradle.SonarQubePlugin@77158e35
+org.gradle.api.plugins.HelpTasksPlugin@7503711a
+org.gradle.language.base.plugins.LifecycleBasePlugin@5995d107
+org.gradle.api.plugins.BasePlugin@69c5be07
+org.gradle.api.plugins.ReportingBasePlugin@56b38060
+org.gradle.api.plugins.JavaBasePlugin@3856a00d
+org.gradle.api.plugins.JavaPlugin@4fbc53e9
+org.gradle.api.plugins.WarPlugin@bcdf99f
+org.gradle.platform.base.plugins.ComponentBasePlugin@41b7d806
+org.gradle.language.base.plugins.LanguageBasePlugin@4c6c4ef5
+org.gradle.platform.base.plugins.BinaryBasePlugin@61626f8a
+org.gradle.api.plugins.JavaBasePluginRules@5877338
+org.gradle.api.publish.plugins.PublishingPlugin@7a0fec66
+org.gradle.api.publish.maven.plugins.MavenPublishPlugin@54ba0e34
+vr.plugin.ManifestClasspathPlugin@26562516
+org.sonarqube.gradle.SonarQubePlugin@18769c57
 classpath:: file collection
 archiveName:: smedigitalbank-1111.war
 
@@ -38,34 +25,30 @@ archiveName:: smedigitalbank-1111.war
 > Task :generateService NO-SOURCE
 > Task :generateTAO NO-SOURCE
 > Task :generateVO NO-SOURCE
-> Task :compileJava
-/home/runner/work/SMEDigitalBank/SMEDigitalBank/src/main/java/com/infosys/custom/ebanking/rest/sme/account/onboarding/v1/resources/CustomSMEOnboardingResource.java:17: error: package org.springframework.web.bind.annotation does not exist
-import org.springframework.web.bind.annotation.RequestBody;
-                                              ^
-/home/runner/work/SMEDigitalBank/SMEDigitalBank/src/main/java/com/infosys/custom/ebanking/rest/sme/account/onboarding/v1/resources/CustomSMEOnboardingResource.java:96: error: cannot find symbol
-	public Response createRequest(@Valid @RequestBody SmeProspect smeProspectInput,
-	                                      ^
-  symbol:   class RequestBody
-  location: class CustomSMEOnboardingResource
-2 errors
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
 
+> Task :sonarqube FAILED
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 5.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/4.10.1/userguide/command_line_interface.html#sec:command_line_warnings
+3 actionable tasks: 1 executed, 2 up-to-date
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-Execution failed for task ':compileJava'.
-> Compilation failed; see the compiler error output for details.
+Execution failed for task ':sonarqube'.
+> org/sonar/batch/bootstrapper/EnvironmentInformation has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
 
 * Try:
 Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
 
 * Get more help at https://help.gradle.org
 
-BUILD FAILED in 4m 46s
-
-> Task :compileJava FAILED
-
-Deprecated Gradle features were used in this build, making it incompatible with Gradle 5.0.
-Use '--warning-mode all' to show the individual deprecation warnings.
-See https://docs.gradle.org/4.10.1/userguide/command_line_interface.html#sec:command_line_warnings
-1 actionable task: 1 executed
+BUILD FAILED in 4s
 Error: Process completed with exit code 1.
