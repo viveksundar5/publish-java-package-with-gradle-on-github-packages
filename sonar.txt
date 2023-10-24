@@ -16,8 +16,8 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 FAILURE: Build failed with an exception.
 
 * Where:
-Build file '/home/runner/work/SMEDigitalBank/SMEDigitalBank/build.gradle' line: 39
+Build file '/home/runner/work/SMEDigitalBank/SMEDigitalBank/build.gradle' line: 28
 
 * What went wrong:
 A problem occurred evaluating root project 'SMEDigitalBank'.
-> Could not find method sonarqube() for arguments [build_8qkxyi486cijvbvhzo150fq00$_run_closure1$_closure4@21c52efd] on object of type org.gradle.api.internal.initialization.DefaultScriptHandler.
+> Could not find method plugins() for arguments [build_8qkxyi486cijvbvhzo150fq00$_run_closure1$_closure4@10e2f8ec] on object of type org.gradle.api.internal.initialization.DefaultScriptHandler.
