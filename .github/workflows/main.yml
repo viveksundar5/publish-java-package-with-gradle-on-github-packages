@@ -1,0 +1,51 @@
+name: Gradle_Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '8'
+
+        # Debugging step
+    - name: Check default Gradle version and path
+      run: |
+        gradle --version
+        which gradle
+
+    - name: Grant execute permission for Gradle
+      run: chmod +x gradle-4.10.1/bin/gradle
+
+    - name: Build with bundled Gradle
+      run: ./gradle-4.10.1/bin/gradle build
+      env:
+        USERNAME_GITHUB: ${{ secrets.USERNAME_GITHUB }}
+        TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
+    
+    - name: List generated WAR files
+      run: ls -la build/libs
+
+    #- name: SonarCloud Analysis
+     # run: |
+      #  ./gradle-4.10.1/bin/gradle sonarqube \
+       #   -Dsonar.organization=rakrepoadmin-github \
+        #  -Dsonar.projectKey=sme-test \
+         # -Dsonar.host.url=https://sonarcloud.io \
+          #-Dsonar.login=$SONAR_TOKEN
+
+    # Add this step to publish to GitHub Packages
+    - name: Publish to GitHub Packages
+      run: |
+        ./gradle-4.10.1/bin/gradle publish
+      env:
+        USERNAME_GITHUB: ${{ secrets.USERNAME_GITHUB }}
+        TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
