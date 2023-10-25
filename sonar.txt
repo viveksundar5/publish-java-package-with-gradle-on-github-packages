@@ -34,3 +34,12 @@ jobs:
           -Dsonar.projectKey=sme-test \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=$SONAR_TOKEN
+
+
+
+
+
+
+Run chmod +x ./gradlew
+chmod: cannot access './gradlew': No such file or directory
+Error: Process completed with exit code 1.
