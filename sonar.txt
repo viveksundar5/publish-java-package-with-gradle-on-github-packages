@@ -1,39 +1,55 @@
 Run ./gradle-4.10.1/bin/gradle sonarqube \
   
 
-Welcome to Gradle 4.10.1!
+> Configure project :
+org.gradle.api.plugins.HelpTasksPlugin@4566a562
+org.gradle.language.base.plugins.LifecycleBasePlugin@371c1348
+org.gradle.api.plugins.BasePlugin@53639ff4
+org.gradle.api.plugins.ReportingBasePlugin@762e1662
+org.gradle.api.plugins.JavaBasePlugin@693e070
+org.gradle.api.plugins.JavaPlugin@51c225b9
+org.gradle.api.plugins.WarPlugin@1e118c4a
+org.gradle.platform.base.plugins.ComponentBasePlugin@188a14ec
+org.gradle.language.base.plugins.LanguageBasePlugin@103e7ed
+org.gradle.platform.base.plugins.BinaryBasePlugin@41ace599
+org.gradle.api.plugins.JavaBasePluginRules@534d423a
+org.gradle.api.publish.plugins.PublishingPlugin@1b2801cb
+org.gradle.api.publish.maven.plugins.MavenPublishPlugin@50aa1cc
+vr.plugin.ManifestClasspathPlugin@23ac1cd9
+org.sonarqube.gradle.SonarQubePlugin@1a49c604
+classpath:: file collection
+archiveName:: smedigitalbank-1111.war
 
-Here are the highlights of this release:
- - Incremental Java compilation by default
- - Periodic Gradle caches cleanup
- - Gradle Kotlin DSL 1.0-RC6
- - Nested included builds
- - SNAPSHOT plugin versions in the `plugins {}` block
+> Task :generateDAL NO-SOURCE
+> Task :generateER NO-SOURCE
+> Task :generateOpenAPI NO-SOURCE
+> Task :generateService NO-SOURCE
+> Task :generateTAO NO-SOURCE
+> Task :generateVO NO-SOURCE
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
+> Task :sonarqube FAILED
 
-For more details see https://docs.gradle.org/4.10.1/release-notes.html
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 5.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/4.10.1/userguide/command_line_interface.html#sec:command_line_warnings
 
-Starting a Gradle Daemon (subsequent builds will be faster)
-
+3 actionable tasks: 1 executed, 2 up-to-date
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-A problem occurred configuring root project 'SMEDigitalBank'.
-> Could not resolve all artifacts for configuration ':classpath'.
-   > Could not resolve com.rakbank.infosys.lib:gradle-plugin:1111.
-     Required by:
-         project :
-      > Could not resolve com.rakbank.infosys.lib:gradle-plugin:1111.
-         > Could not get resource 'https://maven.pkg.github.com/Rakbank-DEH-Onboarding/RetailOnboarding-AccMS/com/rakbank/infosys/lib/gradle-plugin/1111/gradle-plugin-1111.pom'.
-            > java.lang.NullPointerException (no error message)
-   > Could not resolve com.rakbank.infosys.lib.fbk:gradle-plugin:1111.
-     Required by:
-         project :
-      > Could not resolve com.rakbank.infosys.lib.fbk:gradle-plugin:1111.
-         > Could not get resource 'https://maven.pkg.github.com/Rakbank-DEH-Onboarding/RetailOnboarding-AccMS/com/rakbank/infosys/lib/fbk/gradle-plugin/1111/gradle-plugin-1111.pom'.
-            > java.lang.NullPointerException (no error message)
-   > Could not resolve com.rakbank.infosys.lib.fba:gradle-plugin:1111.
-     Required by:
-         project :
-      > Could not resolve com.rakbank.infosys.lib.fba:gradle-plugin:1111.
-         > Could not get resource 'https://maven.pkg.github.com/Rakbank-DEH-Onboarding/RetailOnboarding-AccMS/com/rakbank/infosys/lib/fba/gradle-plugin/1111/gradle-plugin-1111.pom'.
-            > java.lang.NullPointerException (no error message)
+Execution failed for task ':sonarqube'.
+> org/sonar/batch/bootstrapper/EnvironmentInformation has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 4s
+Error: Process completed with exit code 1.
