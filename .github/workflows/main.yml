@@ -14,19 +14,18 @@ jobs:
       uses: actions/setup-java@v2
       with:
         distribution: 'adopt'
-        java-version: '8'
+        java-version: '11'
 
         # Debugging step
     - name: Check default Gradle version and path
       run: |
         gradle --version
         which gradle
-
     - name: Grant execute permission for Gradle
       run: chmod +x gradle-4.10.1/bin/gradle
 
     - name: Build with bundled Gradle
-      run: ./gradle-4.10.1/bin/gradle build
+      run: ./gradle-4.10.1/bin/gradle build --stacktrace
       env:
         USERNAME_GITHUB: ${{ secrets.USERNAME_GITHUB }}
         TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
@@ -41,11 +40,3 @@ jobs:
           -Dsonar.projectKey=sme-test \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=$SONAR_TOKEN
-
-    # Add this step to publish to GitHub Packages
-    - name: Publish to GitHub Packages
-      run: |
-        ./gradle-4.10.1/bin/gradle publish
-      env:
-        USERNAME_GITHUB: ${{ secrets.USERNAME_GITHUB }}
-        TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
