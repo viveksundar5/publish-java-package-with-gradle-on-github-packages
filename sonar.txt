@@ -1,44 +1,54 @@
-name: Gradle_Build
+Run ./gradle-4.10.1/bin/gradle sonarqube \
 
-on:
-  workflow_dispatch:
+> Configure project :
+org.gradle.api.plugins.HelpTasksPlugin@3bbb5641
+org.gradle.language.base.plugins.LifecycleBasePlugin@4711b7b0
+org.gradle.api.plugins.BasePlugin@12659bfe
+org.gradle.api.plugins.ReportingBasePlugin@3eb398c0
+org.gradle.api.plugins.JavaBasePlugin@5f5bd809
+org.gradle.api.plugins.JavaPlugin@15bd4865
+org.gradle.api.plugins.WarPlugin@2bb99b47
+org.gradle.platform.base.plugins.ComponentBasePlugin@9ee6368
+org.gradle.language.base.plugins.LanguageBasePlugin@8f479cc
+org.gradle.platform.base.plugins.BinaryBasePlugin@77f5e6d7
+org.gradle.api.plugins.JavaBasePluginRules@10f138cd
+org.gradle.api.publish.plugins.PublishingPlugin@6afefc98
+org.gradle.api.publish.maven.plugins.MavenPublishPlugin@416fd212
+vr.plugin.ManifestClasspathPlugin@19f457b6
+org.sonarqube.gradle.SonarQubePlugin@da2315
+classpath:: file collection
+archiveName:: smedigitalbank-1111.war
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+> Task :generateDAL NO-SOURCE
+> Task :generateER NO-SOURCE
+> Task :generateOpenAPI NO-SOURCE
+> Task :generateService NO-SOURCE
+> Task :generateTAO NO-SOURCE
+> Task :generateVO NO-SOURCE
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
 
-    - name: Set up JDK 8 with Java EE
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'adopt'
-        java-version: '8'  # Use a Java 8 distribution that includes Java EE APIs
+> Task :sonarqube FAILED
+FAILURE: Build failed with an exception.
 
-    - name: Check default Gradle version and path
-      run: |
-        gradle --version
-        which gradle
+* What went wrong:
+Execution failed for task ':sonarqube'.
+> org/sonar/batch/bootstrapper/EnvironmentInformation has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
 
-    - name: Grant execute permission for Gradle
-      run: chmod +x gradle-4.10.1/bin/gradle
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
 
-    - name: Build with bundled Gradle
-      run: ./gradle-4.10.1/bin/gradle build
-      env:
-        USERNAME_GITHUB: ${{ secrets.USERNAME_GITHUB }}
-        TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
+* Get more help at https://help.gradle.org
 
-    - name: List generated WAR files
-      run: ls -la build/libs
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 5.0.
 
-    - name: SonarCloud Analysis
-      run: |
-        ./gradle-4.10.1/bin/gradle sonarqube \
-          -Dsonar.organization=rakrepoadmin-github \
-          -Dsonar.projectKey=sme-test \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=$SONAR_TOKEN
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/4.10.1/userguide/command_line_interface.html#sec:command_line_warnings
+BUILD FAILED in 4s
+3 actionable tasks: 1 executed, 2 up-to-date
+Error: Process completed with exit code 1.
