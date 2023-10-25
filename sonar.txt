@@ -1,152 +1,36 @@
-Run ./gradle-4.10.1/bin/gradle build --stacktrace
+name: Gradle_Build
 
-Welcome to Gradle 4.10.1!
+on:
+  workflow_dispatch:
 
-Here are the highlights of this release:
- - Incremental Java compilation by default
- - Periodic Gradle caches cleanup
- - Gradle Kotlin DSL 1.0-RC6
- - Nested included builds
- - SNAPSHOT plugin versions in the `plugins {}` block
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-For more details see https://docs.gradle.org/4.10.1/release-notes.html
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
 
-Starting a Gradle Daemon (subsequent builds will be faster)
+    - name: Build with Gradle Wrapper
+      run: |
+        chmod +x ./gradlew
+        ./gradlew build --stacktrace
+      env:
+        USERNAME_GITHUB: ${{ secrets.USERNAME_GITHUB }}
+        TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
 
-> Configure project :
-org.gradle.api.plugins.HelpTasksPlugin@172fd2c8
-org.gradle.language.base.plugins.LifecycleBasePlugin@22f04d3b
-org.gradle.api.plugins.BasePlugin@116f287f
-org.gradle.api.plugins.ReportingBasePlugin@463a995
-org.gradle.api.plugins.JavaBasePlugin@318c7dbc
-org.gradle.api.plugins.JavaPlugin@11357723
-org.gradle.api.plugins.WarPlugin@79f189aa
-org.gradle.platform.base.plugins.ComponentBasePlugin@6047b800
-org.gradle.language.base.plugins.LanguageBasePlugin@32744829
-org.gradle.platform.base.plugins.BinaryBasePlugin@842ad2b
-org.gradle.api.plugins.JavaBasePluginRules@7d8bd950
-org.gradle.api.publish.plugins.PublishingPlugin@2051f959
-org.gradle.api.publish.maven.plugins.MavenPublishPlugin@30f4d87a
-vr.plugin.ManifestClasspathPlugin@2d4200ba
-org.sonarqube.gradle.SonarQubePlugin@ea00d1b
-classpath:: file collection
-archiveName:: smedigitalbank-1111.war
+    - name: List generated WAR files
+      run: ls -la build/libs
 
-> Task :generateDAL NO-SOURCE
-> Task :generateER NO-SOURCE
-> Task :generateOpenAPI NO-SOURCE
-> Task :generateService NO-SOURCE
-> Task :generateTAO NO-SOURCE
-> Task :generateVO NO-SOURCE
-> Task :compileJava
-warning: Supported source version 'RELEASE_8' from annotation processor 'org.gradle.api.internal.tasks.compile.processing.NonIncrementalProcessor' less than -source '11'
-/home/runner/work/SMEDigitalBank/SMEDigitalBank/src/main/java/com/infosys/custom/ebanking/hif/channel/middleware/CustomRAKSOAPWebServiceClient.java:9: error: package javax.xml.soap does not exist
-import javax.xml.soap.MessageFactory;
-                     ^
-/home/runner/work/SMEDigitalBank/SMEDigitalBank/src/main/java/com/infosys/custom/ebanking/hif/channel/middleware/CustomRAKSOAPWebServiceClient.java:10: error: package javax.xml.soap does not exist
-import javax.xml.soap.SOAPConnection;
-                     ^
-/home/runner/work/SMEDigitalBank/SMEDigitalBank/src/main/java/com/infosys/custom/ebanking/hif/channel/middleware/CustomRAKSOAPWebServiceClient.java:11: error: package javax.xml.soap does not exist
-import javax.xml.soap.SOAPException;
-                     ^
-/home/runner/work/SMEDigitalBank/SMEDigitalBank/src/main/java/com/infosys/custom/ebanking/hif/channel/middleware/CustomRAKSOAPWebServiceClient.java:12: error: package javax.xml.soap does not exist
-import javax.xml.soap.SOAPMessage;
-                     ^
-/home/runner/work/SMEDigitalBank/SMEDigitalBank/src/main/java/com/infosys/custom/ebanking/hif/channel/middleware/CustomRAKSOAPWebServiceClient.java:13: error: package javax.xml.soap does not exist
-import javax.xml.soap.SOAPPart;
-                     ^
-/home/runner/work/SMEDigitalBank/SMEDigitalBank/src/main/java/com/infosys/custom/ebanking/hif/channel/middleware/CustomRAKSOAPWebServiceClient.java:34: error: cannot find symbol
-	private static MessageFactory soapMsgFactory;
-	               ^
-  symbol:   class MessageFactory
-  location: class CustomRAKSOAPWebServiceClient
-6 errors
-1 warning
-
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Execution failed for task ':compileJava'.
-> Compilation failed; see the compiler error output for details.
-
-* Try:
-Run with --info or --debug option to get more log output. Run with --scan to get full insights.
-
-* Exception is:
-org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':compileJava'.
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeActions(ExecuteActionsTaskExecuter.java:110)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:77)
-	at org.gradle.api.internal.tasks.execution.OutputDirectoryCreatingTaskExecuter.execute(OutputDirectoryCreatingTaskExecuter.java:51)
-	at org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter.execute(SkipUpToDateTaskExecuter.java:59)
-	at org.gradle.api.internal.tasks.execution.ResolveTaskOutputCachingStateExecuter.execute(ResolveTaskOutputCachingStateExecuter.java:54)
-	at org.gradle.api.internal.tasks.execution.ValidatingTaskExecuter.execute(ValidatingTaskExecuter.java:59)
-	at org.gradle.api.internal.tasks.execution.SkipEmptySourceFilesTaskExecuter.execute(SkipEmptySourceFilesTaskExecuter.java:101)
-	at org.gradle.api.internal.tasks.execution.FinalizeInputFilePropertiesTaskExecuter.execute(FinalizeInputFilePropertiesTaskExecuter.java:44)
-	at org.gradle.api.internal.tasks.execution.CleanupStaleOutputsExecuter.execute(CleanupStaleOutputsExecuter.java:91)
-	at org.gradle.api.internal.tasks.execution.ResolveTaskArtifactStateTaskExecuter.execute(ResolveTaskArtifactStateTaskExecuter.java:62)
-	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:59)
-	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:54)
-	at org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter.execute(ExecuteAtMostOnceTaskExecuter.java:43)
-	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:34)
-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.run(EventFiringTaskExecuter.java:51)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:300)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:292)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:174)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:90)
-	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
-	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:46)
-	at org.gradle.execution.taskgraph.LocalTaskInfoExecutor.execute(LocalTaskInfoExecutor.java:42)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareWorkItemExecutor.execute(DefaultTaskExecutionGraph.java:277)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareWorkItemExecutor.execute(DefaultTaskExecutionGraph.java:262)
-	at org.gradle.execution.taskgraph.DefaultTaskPlanExecutor$ExecutorWorker$1.execute(DefaultTaskPlanExecutor.java:135)
-	at org.gradle.execution.taskgraph.DefaultTaskPlanExecutor$ExecutorWorker$1.execute(DefaultTaskPlanExecutor.java:130)
-	at org.gradle.execution.taskgraph.DefaultTaskPlanExecutor$ExecutorWorker.execute(DefaultTaskPlanExecutor.java:200)
-	at org.gradle.execution.taskgraph.DefaultTaskPlanExecutor$ExecutorWorker.executeWithWork(DefaultTaskPlanExecutor.java:191)
-	at org.gradle.execution.taskgraph.DefaultTaskPlanExecutor$ExecutorWorker.run(DefaultTaskPlanExecutor.java:130)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler error output for details.
-	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:52)
-	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:36)
-	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.delegateAndHandleErrors(NormalizingJavaCompiler.java:100)
-	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.execute(NormalizingJavaCompiler.java:52)
-	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.execute(NormalizingJavaCompiler.java:38)
-	at org.gradle.api.internal.tasks.compile.AnnotationProcessorDiscoveringCompiler.execute(AnnotationProcessorDiscoveringCompiler.java:49)
-	at org.gradle.api.internal.tasks.compile.AnnotationProcessorDiscoveringCompiler.execute(AnnotationProcessorDiscoveringCompiler.java:35)
-	at org.gradle.api.internal.tasks.compile.CleaningJavaCompilerSupport.execute(CleaningJavaCompilerSupport.java:39)
-	at org.gradle.api.internal.tasks.compile.incremental.IncrementalCompilerFactory$2.execute(IncrementalCompilerFactory.java:110)
-	at org.gradle.api.internal.tasks.compile.incremental.IncrementalCompilerFactory$2.execute(IncrementalCompilerFactory.java:106)
-	at org.gradle.api.internal.tasks.compile.incremental.IncrementalResultStoringCompiler.execute(IncrementalResultStoringCompiler.java:59)
-	at org.gradle.api.internal.tasks.compile.incremental.IncrementalResultStoringCompiler.execute(IncrementalResultStoringCompiler.java:43)
-	at org.gradle.api.tasks.compile.JavaCompile.performCompilation(JavaCompile.java:153)
-	at org.gradle.api.tasks.compile.JavaCompile.compile(JavaCompile.java:121)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:73)
-	at org.gradle.api.internal.project.taskfactory.IncrementalTaskAction.doExecute(IncrementalTaskAction.java:50)
-	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:39)
-	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:26)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter$1.run(ExecuteActionsTaskExecuter.java:131)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:300)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:292)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:174)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:90)
-	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeAction(ExecuteActionsTaskExecuter.java:120)
-	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeActions(ExecuteActionsTaskExecuter.java:99)
-	... 31 more
-
-
-* Get more help at https://help.gradle.org
-
-BUILD FAILED in 6m 3s
-
-> Task :compileJava FAILED
-
-Deprecated Gradle features were used in this build, making it incompatible with Gradle 5.0.
-Use '--warning-mode all' to show the individual deprecation warnings.
-See https://docs.gradle.org/4.10.1/userguide/command_line_interface.html#sec:command_line_warnings
-1 actionable task: 1 executed
-Error: Process completed with exit code 1.
+    - name: SonarCloud Analysis
+      run: |
+        ./gradlew sonarqube \
+          -Dsonar.organization=rakrepoadmin-github \
+          -Dsonar.projectKey=sme-test \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=$SONAR_TOKEN
